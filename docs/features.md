@@ -68,3 +68,19 @@ Changes the quantity of an item in the stock, for example after a delivery or a 
 
 ### Example
 - `updateQuantity(3, 2)` sets the quantity of the item with id 3 to 2.
+
+
+## Remove Item
+
+Removes an item from the stock, for example when it is sold out for good or no longer used.
+
+### How it works
+- `removeItem(id)` takes the item's `id` (a number).
+- It finds the item's position in `stock` with `findIndex`, then removes it with `splice`.
+- It prints `Item: <title> has been removed.` and returns nothing (`void`).
+
+### Checks (guard clause)
+- If no item has that id, `findIndex` returns `-1`. The function prints `No item found!` and stops, and the stock is not changed.
+
+### Example
+- `removeItem(3)` removes the item with id 3 and prints its title.
