@@ -45,14 +45,13 @@ const lowStockFilter = (): StockItem[] => {
 const lowStockAlert = (): void => {
     const lowStock = lowStockFilter();
 
-    if(lowStockFilter().length === 0) {
+    if(lowStock.length === 0) {
         console.log('All stock levels are fine.')
     } else {
         lowStock.forEach(item => {
             console.log(`Low stock: ${item.title} (${item.quantity}/min ${item.minQuantity})`)
         })
     }
-
 }
 
 // console.log(addEquipment(treadmill))
