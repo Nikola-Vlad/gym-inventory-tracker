@@ -54,7 +54,12 @@ const lowStockAlert = (): void => {
     }
 }
 
+const findItemById = (id: number): StockItem | undefined => {
+    return stock.find(item => item.id === id)
+}
+
 // console.log(addEquipment(treadmill))
 // console.log(filterByQuality('good'))
 // console.log(lowStockFilter())
-lowStockAlert();
+// lowStockAlert();
+console.log(findItemById(3)?.title)
