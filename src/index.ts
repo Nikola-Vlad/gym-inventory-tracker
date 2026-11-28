@@ -30,12 +30,12 @@ const kettlebell: StockItem = {
 const stock: StockItem[] = [barbell,kettlebell];
 
 const addEquipment = (equipment: StockItem): StockItem[] => {
-    stock.push(equipment)
+    stock.push(equipment);
     return stock;
 }
 
 const filterByQuality = (quality: Quality): StockItem[] => {
-    return stock.filter(item => item.quality === quality)
+    return stock.filter(item => item.quality === quality);
 }
 
 const lowStockFilter = (): StockItem[] => {
@@ -62,21 +62,36 @@ const updateQuantity = (id: number, newQuantity: number): void => {
    const item = findItemById(id);
 
    if(item === undefined) {
-    console.log('Item not found!')
+    console.log('Item not found!');
     return;
    }
 
    if(newQuantity < 0) {
-    console.log('Invalid quantity: must be 0 or more!')
+    console.log('Invalid quantity: must be 0 or more!');
     return;
    }
 
    item.quantity = newQuantity;
 }
 
-// console.log(addEquipment(treadmill))
-// console.log(filterByQuality('good'))
-// console.log(lowStockFilter())
-// console.log(findItemById(3)?.title)
-updateQuantity(3, 2)
-lowStockAlert();
+const removeItem = (id: number): void => {
+    const index = stock.findIndex(item => item.id === id);
+
+    if(index === -1) {
+        console.log('No item found!');
+        return;
+    }
+    const itemBeingRemoved = stock[index];
+
+    stock.splice(index,1);
+    console.log(`Item: ${itemBeingRemoved?.title} has been removed.`);
+}
+
+// console.log(addEquipment(treadmill));
+// console.log(filterByQuality('good'));
+// console.log(lowStockFilter());
+// console.log(findItemById(3)?.title);
+// updateQuantity(3, 2);
+// lowStockAlert();
+// removeItem(3);
+console.log(stock)
