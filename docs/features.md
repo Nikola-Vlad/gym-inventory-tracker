@@ -39,3 +39,15 @@ Warns when an item is running low and needs to be reordered.
 - `Equipment` was renamed to `StockItem`, so the tracker can hold more than equipment.
 - New fields: `category` ('equipment', 'apparel' or 'nutrition') and `minQuantity`.
 - Optional fields for specific item types: `calories`, `protein`, `carbs`, `fat`, `size`, `color`.
+
+## Find Item By Id
+Finds a single item in the stock by its id.
+
+### How it works
+- `findItemById(id)` takes an `id` (number) and returns the first matching `StockItem`.
+- If no item has that id, it returns `undefined`.
+
+### Using the result
+- The return type is `StockItem | undefined`, so TypeScript makes us handle the missing case.
+- Use `?.` (for example `findItemById(3)?.title`) to get `undefined` instead of a crash.
+- Use an `if` check when you want to do something different for a missing item.
