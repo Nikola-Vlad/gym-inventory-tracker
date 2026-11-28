@@ -23,3 +23,19 @@ Finds all equipment in a given condition.
 - Does: checks each item in `equipmentStock` and keeps those that match
 - Returns: a new array of `Equipment`. The original stock is not changed.
 - Test: add the treadmill, then filter by `'broken'`. You should see only the treadmill.
+
+## Low Stock Alert
+Warns when an item is running low and needs to be reordered.
+
+### How it works
+- Every `StockItem` has a `quantity` (how many we have) and a `minQuantity` (the lowest amount we want to keep).
+- An item counts as **low** when `quantity <= minQuantity`. Being exactly at the minimum counts as low, because that is the moment to reorder.
+
+### Functions
+- `lowStockFilter()` returns an array of all low items. It takes no parameters, because each item carries its own minimum.
+- `lowStockAlert()` prints one line per low item, for example: `Low stock: kettlebell (3/min 5)`. If nothing is low, it prints `All stock levels are fine.` It returns nothing (`void`).
+
+### Also changed
+- `Equipment` was renamed to `StockItem`, so the tracker can hold more than equipment.
+- New fields: `category` ('equipment', 'apparel' or 'nutrition') and `minQuantity`.
+- Optional fields for specific item types: `calories`, `protein`, `carbs`, `fat`, `size`, `color`.
