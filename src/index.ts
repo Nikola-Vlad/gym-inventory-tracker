@@ -1,36 +1,61 @@
-import type { Equipment, Quality } from './equipment.js'
+import type { StockItem, Quality } from './equipment.js'
 
-const barbell: Equipment = {
+const barbell: StockItem = {
     title: 'barbell',
     id: 1,
     quality: 'good', 
-    quantity: 20,
+    quantity: 21,
+    category: 'equipment',
+    minQuantity: 20
 };
 
-const treadmill: Equipment = {
+const treadmill: StockItem = {
     title: 'treadmill',
     id: 2,
     quality: 'broken',
-    quantity: 5
+    quantity: 5,
+    category: 'equipment',
+    minQuantity: 3
 }
 
-const kettlebell: Equipment = {
+const kettlebell: StockItem = {
     title: 'kettlebell',
     id: 3,
     quality: 'good',
-    quantity: 10,
+    quantity: 6,
+    category: 'equipment',
+    minQuantity: 5,
 }
 
-const equipmentStock: Equipment[] = [barbell,kettlebell];
+const stock: StockItem[] = [barbell,kettlebell];
 
-const addEquipment = (equipment: Equipment): Equipment[] => {
-    equipmentStock.push(equipment)
-    return equipmentStock;
+const addEquipment = (equipment: StockItem): StockItem[] => {
+    stock.push(equipment)
+    return stock;
 }
 
-const qualityFilterEquipment = (quality: Quality): Equipment[] => {
-    return equipmentStock.filter(item => item.quality === quality)
+const filterByQuality = (quality: Quality): StockItem[] => {
+    return stock.filter(item => item.quality === quality)
 }
 
-console.log(addEquipment(treadmill))
-console.log(qualityFilterEquipment('good'))
+const lowStockFilter = (): StockItem[] => {
+    return stock.filter(item => item.quantity <= item.minQuantity)
+}
+
+const lowStockAlert = (): void => {
+    const lowStock = lowStockFilter();
+
+    if(lowStockFilter().length === 0) {
+        console.log('All stock levels are fine.')
+    } else {
+        lowStock.forEach(item => {
+            console.log(`Low stock: ${item.title} (${item.quantity}/min ${item.minQuantity})`)
+        })
+    }
+
+}
+
+// console.log(addEquipment(treadmill))
+// console.log(filterByQuality('good'))
+// console.log(lowStockFilter())
+lowStockAlert();
