@@ -58,8 +58,25 @@ const findItemById = (id: number): StockItem | undefined => {
     return stock.find(item => item.id === id)
 }
 
+const updateQuantity = (id: number, newQuantity: number): void => {
+   const item = findItemById(id);
+
+   if(item === undefined) {
+    console.log('Item not found!')
+    return;
+   }
+
+   if(newQuantity < 0) {
+    console.log('Invalid quantity: must be 0 or more!')
+    return;
+   }
+
+   item.quantity = newQuantity;
+}
+
 // console.log(addEquipment(treadmill))
 // console.log(filterByQuality('good'))
 // console.log(lowStockFilter())
-// lowStockAlert();
-console.log(findItemById(3)?.title)
+// console.log(findItemById(3)?.title)
+updateQuantity(3, 2)
+lowStockAlert();
