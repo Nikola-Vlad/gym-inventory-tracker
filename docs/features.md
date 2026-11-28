@@ -51,3 +51,20 @@ Finds a single item in the stock by its id.
 - The return type is `StockItem | undefined`, so TypeScript makes us handle the missing case.
 - Use `?.` (for example `findItemById(3)?.title`) to get `undefined` instead of a crash.
 - Use an `if` check when you want to do something different for a missing item.
+
+## Update Quantity
+Changes the quantity of an item in the stock, for example after a delivery or a sale.
+
+### How it works
+- `updateQuantity(id, newQuantity)` takes the item's `id` and the new quantity (both numbers).
+- It finds the item with `findItemById`, then replaces its `quantity` with `newQuantity`.
+- It returns nothing (`void`).
+
+### Checks (guard clauses)
+- If no item has that id, it prints `Item not found!` and stops.
+- If `newQuantity` is below 0, it prints `Invalid quantity: must be 0 or more!` and stops.
+- A quantity of 0 is allowed, because an item can run out.
+- The item is only changed if both checks pass.
+
+### Example
+- `updateQuantity(3, 2)` sets the quantity of the item with id 3 to 2.
